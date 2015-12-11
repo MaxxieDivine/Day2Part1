@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Drawing;
 
 namespace Day3Part1
 {
@@ -17,40 +18,125 @@ namespace Day3Part1
             //
             //int counter = 0;
             //string line;
-            //Looks like we need a list of points (x,y)
+            //Looks like we need a dictionary of points (x,y)
             //switch/case
             //if >...x++
             //if v...y--
             //if <...x--
             //if ^...y++
-
-            int x = 1;
+            Point point = new Point();
+            List<Point> list = new List<Point>();
+            
+            int x = 0;
             int y = 0;
-            string s = ">^^v^<>v<<<v";
-            foreach(char c in s)
+            string s = File.ReadAllText("input.txt");
+            //string s = ">v<^";
+            int count = 0;
+
+            if (list.Count == 0)
             {
-                Console.WriteLine(c);
+                point.X = x;
+                point.Y = y;
+                list.Add(point);
+            }
+
+            foreach (char c in s)
+            {
+                
+
+                //Console.WriteLine(c);
                 if(c.ToString() == ">")
                 {
                     x++;
-                    break;
+                    point.X = x;
+                    Console.WriteLine(x + "," + y);
+                    foreach (Point p in list)
+                    {
+                        if(p.X == point.X && p.Y == point.Y)
+                        {
+                            Console.WriteLine("There was a dupe!");
+                            continue;
+                        }
+                        else
+                        {
+                            list.Add(point);
+                            count++;
+                            break;
+                        }
+                    }
+                    
                 }
                 if (c.ToString() == "v")
                 {
                     y--;
-                    break;
+                    point.Y = y;
+                    Console.WriteLine(x + "," + y);
+                    foreach (Point p in list)
+                    {
+                        if (p.X == point.X && p.Y == point.Y)
+                        {
+                            Console.WriteLine("There was a dupe!");
+                            continue;
+                        }
+                        else
+                        {
+                            list.Add(point);
+                            count++;
+                            break;
+                        }
+                    }
+                    
                 }
                 if (c.ToString() == "<")
                 {
                     x--;
-                    break;
+                    point.X = x;
+                    Console.WriteLine(x + "," + y);
+                    foreach (Point p in list)
+                    {
+                        if (p.X == point.X && p.Y == point.Y)
+                        {
+                            Console.WriteLine("There was a dupe!");
+                            continue;
+                        }
+                        else
+                        {
+
+                            list.Add(point);
+                            count++;
+                            break;
+                        }
+                    }
                 }
                 if (c.ToString() == "^")
                 {
                     y++;
-                    break;
+                    point.Y = y;
+                    Console.WriteLine(x + "," + y);
+                    foreach (Point p in list)
+                    {
+                        if (p.X == point.X && p.Y == point.Y)
+                        {
+                            Console.WriteLine("There was a dupe!");
+                            continue;
+                        }
+                        else
+                        {
+                            list.Add(point);
+                            count++;
+                            break;
+                        }
+                    }
+                    
                 }
+
+                
             }
+            Console.WriteLine("X Value = " + x);
+            Console.WriteLine("Y Value = " + y);
+
+            Console.WriteLine("The number of houses is: " + count);
+
 
 
             // Read the file and display it line by line.
@@ -64,5 +150,6 @@ namespace Day3Part1
 
             file.Close();*/
         }
+        
     }
 }
