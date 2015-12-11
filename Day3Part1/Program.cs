@@ -31,19 +31,14 @@ namespace Day3Part1
             int y = 0;
             string s = File.ReadAllText("input.txt");
             //string s = ">v<^";
-            int count = 0;
+            int count = 1;
 
-            if (list.Count == 0)
-            {
-                point.X = x;
-                point.Y = y;
-                list.Add(point);
-            }
+            point.X = x;
+            point.Y = y;
+            list.Add(point);
 
             foreach (char c in s)
             {
-                
-
                 //Console.WriteLine(c);
                 if(c.ToString() == ">")
                 {
@@ -52,7 +47,7 @@ namespace Day3Part1
                     Console.WriteLine(x + "," + y);
                     foreach (Point p in list)
                     {
-                        if(p.X == point.X && p.Y == point.Y)
+                        if(p.X == point.X && p.Y == point.Y )
                         {
                             Console.WriteLine("There was a dupe!");
                             continue;
@@ -78,12 +73,12 @@ namespace Day3Part1
                             Console.WriteLine("There was a dupe!");
                             continue;
                         }
-                        else
-                        {
-                            list.Add(point);
-                            count++;
-                            break;
-                        }
+                        //else
+                        //{
+                       //     list.Add(point);
+                       //     count++;
+                       //     break;
+                       // }
                     }
                     
                 }
